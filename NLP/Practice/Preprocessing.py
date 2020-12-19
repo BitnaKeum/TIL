@@ -14,7 +14,7 @@ import re
 # In[3]:
 
 
-sentence = 'Sunil tweeted, "Witnessing 70th Republic Day of India from Rajpath,            New Delhi. Mesmerizing performance by Indian Army! Awesome airshow! @ india_official             @indian_army #India #70thRepublic_Day. For more photos ping me sunil@photoing.com :)"'
+sentence = 'Sunil tweeted, "Witnessing 70th Republic Day of India from Rajpath, New Delhi. Mesmerizing performance by Indian Army! Awesome airshow! @ india_official @indian_army #India #70thRepublic_Day. For more photos ping me sunil@photoing.com :)"'
 
 
 # In[4]:
