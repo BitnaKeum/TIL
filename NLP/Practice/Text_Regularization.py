@@ -30,8 +30,6 @@ import nltk
 from nltk import word_tokenize
 
 
-# In[ ]:
-
 
 # PoS tagging (품사 태깅)
 
@@ -48,8 +46,6 @@ print(words)
 
 nltk.pos_tag(words)  
 
-
-# In[ ]:
 
 
 # 불용어 제거 과정
@@ -85,8 +81,6 @@ print(sentence_words)
 sentence_no_stops = ' '.join([word for word in sentence_words if word not in stop_words])
 print(sentence_no_stops)
 
-
-# In[30]:
 
 
 # 텍스트 정규화 과정
