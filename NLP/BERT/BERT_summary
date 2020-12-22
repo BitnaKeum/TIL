@@ -13,3 +13,22 @@
    마지막으로 모델의 성능 평가를 수행한다. 성능 평가 지표인 Exact Match(EM)와 F1 점수가 출력된다.
    (공식적인 human performance의 값은 EM=80.17, F1=91.20)
 
+
+
+
+
+※ 학습에 3~5시간이 소요되는데, 학습되는 동안 런타임이 30분마다 끊어지곤 한다. 
+   이 현상을 방지하려면 해당 브라우저에서 F12 - Console 에 들어가 다음 코드를 붙여넣기한다.
+function ClickConnect() { var buttons = document.querySelectorAll("colab-dialog.yes-no-dialog paper-button#cancel"); buttons.forEach(function(btn) { btn.click(); }); console.log("1분마다 자동 재연결"); document.querySelector("colab-toolbar-button#connect").click(); } setInterval(ClickConnect,1000*60);
+
+
+※ 학습하는 과정에서 2GB짜리 model.ckpt-####.data-00000-of-00001 파일 9개가 드라이브에 생성된다. 
+   다른 파일까지 총 18GB 이상의 용량이 필요한데 구글 드라이브의 기본 저장 용량은 15GB뿐이므로 그냥 놔두면 드라이브 용량이 부족하여 Input/Output Error가 발생한다.
+   따라서, 드라이브 용량이 어느정도 차면 model.ckpt-####.data-00000-of-00001 파일을 먼저 생성된 것부터 몇 개 삭제(휴지통에서도 삭제)하여 용량을 확보해줘야 한다. 
+   삭제해도 checkpoint가 저장되어 있기 때문에 학습에 지장은 없다.
+
+
+※ BERT 강의
+https://www.youtube.com/watch?v=zia49ZyKiX0
+https://www.youtube.com/watch?v=riGc8z3YIgQ
+
