@@ -1,0 +1,15 @@
+1. tensorflow 1.11.0 이상을 설치한다. (설치방법: https://beausty23.tistory.com/59 )
+
+2. Google Colab에서 런타임 - 런타임 유형 변경 - 하드웨어 가속기를 GPU로 변경한다.
+
+3. https://blog.nerdfactory.ai/2019/04/25/learn-bert-with-colab.html에서 사전준비와 1. GPU로 학습하기를 따라 실습한다. 
+   
+   사전준비 단계에서 KorQuAD 데이터셋은 https://github.com/korquad/korquad.github.io/tree/master/dataset에 들어가 KorQuAD_v1.0_dev.json, KorQuAD_v1.0_train.json, evaluate-v1.0.py 를 다운받아야 한다.
+
+   구글 드라이브와 연동하여 다운로드한 파일들을 드라이브에 옮기는 과정까지 완료하면 Colab에서 학습을 시작한다.
+   
+   학습이 문제 없이 완료되면 output_dir에 지정해준 경로에 predictions.json 파일이 생성된다.
+   
+   마지막으로 모델의 성능 평가를 수행한다. 성능 평가 지표인 Exact Match(EM)와 F1 점수가 출력된다.
+   (공식적인 human performance의 값은 EM=80.17, F1=91.20)
+
