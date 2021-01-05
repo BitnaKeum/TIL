@@ -9,19 +9,19 @@ int main()
 
 	while (1)
 	{
-		printf("ÀÌÁø¼ö ÀÔ·Â (0 ¶Ç´Â 1) : ");
+		printf("ì´ì§„ìˆ˜ ì…ë ¥ (0 ë˜ëŠ” 1) : ");
 		scanf_s("%d", &binary);
 
 		if (validateBinary(binary) == -1)
 		{
-			printf("ÀÌÁø¼ö°¡ ¾Æ´Õ´Ï´Ù.\n");
+			printf("ì´ì§„ìˆ˜ê°€ ì•„ë‹™ë‹ˆë‹¤.\n");
 			continue;
 		}
 		break;
 	}
 
-	printf("ÀÔ·ÂÇÑ ÀÌÁø¼ö : %d\n", binary);
-	printf("º¯È¯µÈ ½ÊÁø¼ö : %d\n", binaryToDecimal(binary));
+	printf("ì…ë ¥í•œ ì´ì§„ìˆ˜ : %d\n", binary);
+	printf("ë³€í™˜ëœ ì‹­ì§„ìˆ˜ : %d\n", binaryToDecimal(binary));
 
 }
 
