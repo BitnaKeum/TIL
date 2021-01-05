@@ -6,13 +6,13 @@ int main(void)
 {
 	double num;
 
-	printf("¾çÀÇ ºÎµ¿¼Ò¼öÁ¡À» ÀÔ·ÂÇÏ½Ã¿À : ");
+	printf("ì–‘ì˜ ë¶€ë™ì†Œìˆ˜ì ì„ ì…ë ¥í•˜ì‹œì˜¤ : ");
 	scanf_s("%lf", &num);
 
 	double result;
 	result = roundTwo(num);
 
-	printf("¹İ¿Ã¸² °á°ú : %lf\n", result);
+	printf("ë°˜ì˜¬ë¦¼ ê²°ê³¼ : %lf\n", result);
 
 	return 0;
 
