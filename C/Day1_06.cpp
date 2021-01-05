@@ -5,9 +5,9 @@ int main()
 	int num1 = 0, num2 = 0;
 	char ch = 0;
 
-	printf("╪Ж╫д ют╥б (©╧: 10 + 20) : ");
+	printf("б╪ц╤б╫ц└ ц─ц■б╥ц┌ (б©б╧: 10 + 20) : ");
 	scanf_s("%d %c", &num1, &ch);
-	getchar();	// ©ёеме╟ а╕╟е
+	getchar();	// б©бёц┘ц█ц┘б╟ ц│б╕б╟ц┘
 	scanf_s("%d", &num2);
 	printf("%d %c %d = %d\n", num1, ch, num2, num1 + num2);
 }
