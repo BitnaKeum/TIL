@@ -1,45 +1,45 @@
-//#include <stdio.h>
-//
-//int* MAX(int* pArr, int num);
-//int* MIN(int* pArr, int num);
-//
-//
-//int main()
-//{
-//	int arr[10] = { 0 };
-//	
-//	for (int i = 0; i <= 9; i++) {
-//		printf("arr[%d] : ", i);
-//		scanf_s("%d", &arr[i]);
-//	}
-//
-//	printf("\n");
-//	for (int i = 0; i < 10; i++)
-//		printf("%d  ", arr[i]);
-//	printf("\n");
-//
-//	int *pMax = NULL, *pMin = NULL;
-//	pMax = MAX(arr, sizeof(arr) / sizeof(int));	// ÃÖ´ë°ªÀÇ ÁÖ¼Ò
-//	pMin = MIN(arr, sizeof(arr) / sizeof(int));	// ÃÖ¼Ò°ªÀÇ ÁÖ¼Ò
-//
-//	printf("ÃÖ´ë°ª : %d, ÀÎµ¦½º : %d\n", *pMax, pMax - arr);
-//	printf("ÃÖ¼Ò°ª : %d, ÀÎµ¦½º : %d\n", *pMin, pMin - arr);
-//}
-//
-//int* MAX(int* pArr, int num) {
-//	int* pMax = pArr;
-//	for (int i = 1; i < num; i++) {
-//		if (*(pArr+i) > *pMax)
-//			pMax = pArr+i;
-//	}
-//	return pMax;
-//}
-//
-//int* MIN(int* pArr, int num) {
-//	int* pMin = pArr;
-//	for (int i = 1; i < num; i++) {
-//		if (*(pArr+i) < * pMin)
-//			pMin = pArr+i;
-//	}
-//	return pMin;
-//}
+#include <stdio.h>
+
+int* MAX(int* pArr, int num);
+int* MIN(int* pArr, int num);
+
+
+int main()
+{
+	int arr[10] = { 0 };
+	
+	for (int i = 0; i <= 9; i++) {
+		printf("arr[%d] : ", i);
+		scanf_s("%d", &arr[i]);
+	}
+
+	printf("\n");
+	for (int i = 0; i < 10; i++)
+		printf("%d  ", arr[i]);
+	printf("\n");
+
+	int *pMax = NULL, *pMin = NULL;
+	pMax = MAX(arr, sizeof(arr) / sizeof(int));	// ìµœëŒ€ê°’ì˜ ì£¼ì†Œ
+	pMin = MIN(arr, sizeof(arr) / sizeof(int));	// ìµœì†Œê°’ì˜ ì£¼ì†Œ
+
+	printf("ìµœëŒ€ê°’ : %d, ì¸ë±ìŠ¤ : %d\n", *pMax, pMax - arr);
+	printf("ìµœì†Œê°’ : %d, ì¸ë±ìŠ¤ : %d\n", *pMin, pMin - arr);
+}
+
+int* MAX(int* pArr, int num) {
+	int* pMax = pArr;
+	for (int i = 1; i < num; i++) {
+		if (*(pArr+i) > *pMax)
+			pMax = pArr+i;
+	}
+	return pMax;
+}
+
+int* MIN(int* pArr, int num) {
+	int* pMin = pArr;
+	for (int i = 1; i < num; i++) {
+		if (*(pArr+i) < * pMin)
+			pMin = pArr+i;
+	}
+	return pMin;
+}
