@@ -2,28 +2,32 @@
 ### 파일 입출력
 <br>
 
-1. 파일 열기
 ```
 FILE *fp = NULL;
+char ch = 0;
+char str[100] = {0};
+```
+<br> 
+
+1. 파일 열기
+```
 fopen_s(&fp, "text.txt", "r");  // 읽기 모드로 열기
 if(fp==NULL) {
    // 에러 메시지 출력
 }
 
-fclose(fp);
+fclose(fp); // 파일 닫기
 ```
 <br>
 
 2. 파일로부터 한 글자 읽기
 ```
-char ch;
 ch = fgetc(fp);
 ```
 <br>
 
 3. 파일로부터 한 줄(한 문자열) 읽기
 ```
-char str[100] = {0};
 fgets(str, sizeof(str), fp);
 ```
 <br>
