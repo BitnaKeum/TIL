@@ -111,4 +111,24 @@ list_value = dic.values()   # ['apple', 'banana']
 
 
 
-####
+## 모듈 
+
+#### 모듈 사용법
+
+1. `import 모듈명`
+=> 모듈 내 변수를 사용하려면 모듈명.변수 형태로 사용해야함(번거로움)
+<br>
+
+2. `from 모듈명 import *`
+=> 이름만으로 사용이 가능함. But 기존 코드에 있는 변수명이 해당 모듈에도 있을 경우, 값이 뜻하지 않게 변할 수 있음
+
+<br><br>
+
+#### random 모듈
+
+`random.random()` => 0 이상 1 미만의 난수를 생성<br>
+
+`random.randrange(1,6)` => 1 이상 6 미만의 정수 난수를 생성<br>
+
+`random.shuffle(순서형자료)` => 섞어줌<br>
+
