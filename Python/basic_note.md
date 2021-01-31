@@ -137,7 +137,7 @@ f_str = f'{name:5s age:5d avg:5.1f}'
 닫기 : `f.close()`<br><br>
 
 한 줄 읽기 : `f.readline()`<br>
-파일 전체를 한 줄씩 읽어서 저장 : `f.readlines()   # 한 줄씩 배열에 저장됨`<br>
+파일 전체를 한 줄씩 읽어서 배열에 저장 : `f.readlines()`<br>
 
 
 <br><br><hr><br>
