@@ -13,16 +13,19 @@
 #### 길이 구하기
 `len(lis)   # 4`
 
-<br><br>
+<br>
 
+#### 끝에서 3번째 원소부터 마지막 원소까지 출력
+`lis[-3:]`
 
+<br><br><br>
 
 
 ## 튜플(Tuple)
 
 
 #### 매개변수에 * 표시
-나머지 매개변수들을 하나의 튜플로 묶음
+: 나머지 매개변수들을 하나의 튜플로 묶음
 ```
 def func(num1, num2, *rest):
 ...
@@ -48,9 +51,7 @@ lis = [1, 2, 3]
 tup = tuple(lis)  # (1, 2, 3)
 ```
 
-<br><br>
-
-
+<br><br><br>
 
 
 
@@ -83,7 +84,63 @@ list_key = dic.keys()       # ['red', 'yellow']
 list_value = dic.values()   # ['apple', 'banana']
 ```
 
+<br><br><br>
+
+
+## 문자열
+
+#### 텍스트 문자열(Text String)
+
+`text_str = ' Hello '`
+<br>
+
+맨 앞/뒤의 공백 제거 : `text_str.strip()  # 'Hello'`<br>
+텍스트 대체 : `text_str.replace(기존 문자열, 대체할 문자열)`<br>
+
+<br>
+
+#### 바이트 문자열(Byte String)
+
+`byte_str = b'Hello'`
+<br>
+텍스트 문자열 -> 바이트 문자열 : `text_str.encode('utf-8')`<br>
+바이트 문자열 -> 텍스트 문자열 : `byte_str.decode('utf-8')`<br>
+
+<br>
+
+#### 원시 문자열(Raw String)
+
+`raw_str = r'C:\Users'    # 백슬래시를 해석하지 않음`
+<br>
+파일 경로, 정규 표현식에서 유용하게 사용
+
 <br><br>
+
+#### f 문자열
+포맷을 갖는 문자열
+```
+name = 'maru'
+age = 1
+avg = 99.9
+f_str = f'{name:5s age:5d avg:5.1f}'
+```
+
+
+<br><br><hr><br>
+
+
+## 파일 입출력
+
+열기 : `f = open(파일 경로, 모드)   # 모드를 안 써주면 읽기 모드(r)로 열음`<br>
+읽기 : `f.read()`<br>
+쓰기 : `f.write(쓸 내용)   # f.close()까지 해줘야 실제 파일이 업데이트됨!!`<br>
+닫기 : `f.close()`<br><br>
+
+한 줄 읽기 : `f.readline()`<br>
+파일 전체를 한 줄씩 읽어서 저장 : `f.readlines()   # 한 줄씩 배열에 저장됨`<br>
+
+
+<br><br><hr><br>
 
 
 ## lambda 표현식
@@ -100,20 +157,19 @@ list_value = dic.values()   # ['apple', 'banana']
 #### map()
 `map(함수, 리스트)`
 
-리스트로부터 원소를 하나씩 꺼내 함수를 적용하고, 결과값을 모두 담은 리스트를 반환한다.
+- 리스트로부터 원소를 하나씩 꺼내 함수를 적용하고, 결과값을 모두 담은 리스트를 반환한다.
 
 <br>
 
 `map(lambda x : x + 10, [10, 20, 30])   # [20, 30, 40] `
 
 
-<br><br>
-
+<br><br><hr><br>
 
 
 ## 모듈 
 
-#### 모듈 사용법
+#### 모듈 불러오기
 
 1. `import 모듈명`
 => 모듈 내 변수를 사용하려면 모듈명.변수 형태로 사용해야함(번거로움)
@@ -121,6 +177,11 @@ list_value = dic.values()   # ['apple', 'banana']
 
 2. `from 모듈명 import *`
 => 이름만으로 사용이 가능함. But 기존 코드에 있는 변수명이 해당 모듈에도 있을 경우, 값이 뜻하지 않게 변할 수 있음
+<br><br>
+
+#### 모듈 다시 불러오기
+`reload(모듈명)` => 모듈의 코드가 수정된 경우 다시 불러온다
+
 
 <br><br>
 
@@ -132,3 +193,61 @@ list_value = dic.values()   # ['apple', 'banana']
 
 `random.shuffle(순서형자료)` => 섞어줌<br>
 
+
+<br><br><hr><br>
+
+
+## 클래스, 메소드
+
+#### 기본 사용 방법
+
+```
+# 파일명 : Info.py
+class Student:
+    kor = 90
+    mat = 100
+    eng = 95
+
+    def __init__(self):
+        print("학생이 추가되었습니다.")
+
+    def Grade(self):
+        return 'A'
+```
+
+```
+import Info
+
+bitna = Info.Student()  # '학생이 추가되었습니다.'
+bitna.math      # 100
+bitna.Grade()   # 'A'
+```
+<br>
+
+- 메소드 정의 시 항상 인자에 self를 써준다!<br><br>
+
+
+#### __init__ 메소드 (생성자)
+
+```
+def __init__(self, 인자):   # 인자 생략 가능
+...
+```
+
+<br>
+- 해당 클래스 객체를 생성하면 자동으로 실행되어 초기화를 진행한다
+
+<br><br>
+
+#### 상속(Inheritance)
+
+- 클래스의 인자에 상속할 클래스를 써준다!
+
+
+```
+class Bitna(Student):  # Bitna Class는 Student Class를 상속 받는다
+  def major(self):
+    return 'Computer Engineering'
+```
+
+<br><br>
