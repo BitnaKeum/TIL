@@ -183,7 +183,9 @@ for i, val in enumerate(lis):     # i, val : 0, 'red' / 1, 'blue' / 2, 'green'
 `list(range(1, 10, 2))      # 1, 3, 5, 7, 9`<br><br>
 
 역순 범위<br>
-`list(range(5, 0, -1))      # 5, 4, 3, 2, 1`<br>
+`list(range(5, 0, -1))      # 5, 4, 3, 2, 1`<br><br>
+
+- for문에서 선언된 변수는 for문을 벗어나도 그 값을 유지한다! (C와 다른 점)
 
 
 <br><br><hr><br>
