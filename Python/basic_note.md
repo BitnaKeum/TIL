@@ -149,6 +149,44 @@ avg = 99.9
 f_str = f'{name:5s age:5d avg:5.1f}'
 ```
 
+<br><br>
+
+### 문자 관련 함수
+chr() : 아스키 코드값(int)를 해당하는 문자로<br>
+```
+chr(65)    # 'A'
+# char(65) 이런거 안됨
+```
+<br>
+
+ord() : 문자를 해당하는 아스키 코드값(int)로<br>
+
+```
+ord('A')    # 65
+# int('A') 이런거 안됨
+```
+<br><br>
+
+### 문자열 관련 함수
+isdigit() : 문자열이 모두 숫자로 이루어졌는지 확인<br>
+```
+s1 = "123"
+s2 = "a1b2"
+s1.isdigit()    # True
+s2.isdigit()    # False
+```
+
+<br>
+isalpha() : 문자열이 모두 문자로 이루어졌는지 확인<br>
+
+```
+s1 = "abc"
+s2 = "a1b2"
+s1.isalpha()    # True
+s2.isalpha()    # False
+```
+
+
 
 <br><br><hr><br>
 
