@@ -80,3 +80,12 @@ s = "apple"
 s_sort = sorted(s) # [a, e, l, p, p]
 ''.join(s_sort)   # "aelpp"
 ```
+
+<br><br>
+
+## 진법 변환하기
+`int(변환할 수 문자열, 진법)`
+
+ex) `int('1010', 2)   # 10`
+
+<br><br>
