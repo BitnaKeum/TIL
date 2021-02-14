@@ -54,13 +54,13 @@ tup = tuple(lis)  # (1, 2, 3)
 
 ### 딕셔너리(Dictionary)
 
-선언 방법
+#### 선언 방법
 ```
 dic = {}
 dic['red'] = 'apple'
 dic['yellow'] = 'banana'
 ```
-or
+또는
 ```
 dic = {}
 dic = {'red':'apple', 'yellow':'banana'}
@@ -68,12 +68,12 @@ dic = {'red':'apple', 'yellow':'banana'}
 
 <br>
 
-원소 삭제 방법
+#### 원소 삭제 방법
 `del dic['yellow']`
 
 <br>
 
-딕셔너리 -> 리스트
+#### 딕셔너리 -> 리스트
 
 ```
 dic = {'red':'apple', 'yellow':'banana'}
@@ -81,7 +81,16 @@ list_key = dic.keys()       # ['red', 'yellow']
 list_value = dic.values()   # ['apple', 'banana']
 ```
 
+<br>
+
+#### key 기준으로 정렬하기<br>
+`sorted(dic.items())`<br>
+
+#### value 기준으로 정렬하기<br>
+`sorted(dic.items(), key=lambda x:x[1])` 또는 `sorted(dic.items(), key=operator.itemgetter(1))`
+
 <br><br><br>
+
 
 
 ### 집합(Set)
