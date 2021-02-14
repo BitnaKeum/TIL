@@ -2,39 +2,31 @@
 
 ### 리스트(List)
 
-`lis = [3, 5, 1, 4]`
+
+#### 정렬 : `lis.sort()` <br>
+#### 길이 구하기 : `len(lis)` <br>
+#### 끝에서 3번째 원소부터 마지막 원소까지 출력 : `lis[-3:]` <br>
 
 <br>
 
-정렬하기 : `lis.sort()    # [1, 3, 4, 5]` <br>
-길이 구하기 : `len(lis)   # 4` <br>
-끝에서 3번째 원소부터 마지막 원소까지 출력 : `lis[-3:]` <br>
-
-<br>
-
-리스트 -> 문자열
+#### 리스트 -> 문자열
 `''.join(lis)` => 각 원소를 공백 없이 이어 붙이기 <br>   
 `' '.join(lis)` => 각 원소를 공백과 함께 이어 붙이기 <br>
+
+<br>
+
+#### 문자열 리스트일 때, 각 문자열의 n번째 글자를 기준으로 정렬
+```
+lis  = ["red", "blue", "green"]
+sort_lis = sorted(lis, key=lambda x: x[n])    # if n=2, ["red", "green", "blue"]
+```
 
 <br><br><br>
 
 
 ### 튜플(Tuple)
 
-
-매개변수에 * 표시 => 나머지 매개변수들을 하나의 튜플로 묶음
-```
-def func(num1, num2, *rest):
-...
-```
-
-```
-func(1, 2, 3, 4, 5, 6)  # num1 = 1, num2 = 2, rest = (3,4,5,6)
-```
-
-<br>
-
-튜플 -> 리스트
+#### 튜플 -> 리스트
 ```
 tup = (1, 2, 3)
 lis = list(tup)   # [1, 2, 3]
@@ -42,10 +34,22 @@ lis = list(tup)   # [1, 2, 3]
 
 <br>
 
-리스트 -> 튜플
+#### 리스트 -> 튜플
 ```
 lis = [1, 2, 3]
 tup = tuple(lis)  # (1, 2, 3)
+```
+
+<br>
+
+#### 매개변수에 * 표시 => 나머지 매개변수들을 하나의 튜플로 묶음
+```
+def func(num1, num2, *rest):
+...
+```
+
+```
+func(1, 2, 3, 4, 5, 6)  # num1 = 1, num2 = 2, rest = (3,4,5,6)
 ```
 
 <br><br><br>
@@ -76,18 +80,27 @@ dic = {'red':'apple', 'yellow':'banana'}
 #### 딕셔너리 -> 리스트
 
 ```
-dic = {'red':'apple', 'yellow':'banana'}
+dic = {'red': 1, 'yellow': 2}
 list_key = dic.keys()       # ['red', 'yellow']
-list_value = dic.values()   # ['apple', 'banana']
+list_value = dic.values()   # [1, 2]
 ```
 
 <br>
 
-#### key 기준으로 정렬하기<br>
-`sorted(dic.items())`<br>
+#### key 기준으로 정렬<br>
+```
+sorted(dic.items())
+```
 
-#### value 기준으로 정렬하기<br>
-`sorted(dic.items(), key=lambda x:x[1])` 또는 `sorted(dic.items(), key=operator.itemgetter(1))`
+#### value 기준으로 정렬<br>
+```
+sorted(dic.items(), key=lambda x: x[1])
+```
+또는<br>
+```
+import operator
+sorted(dic.items(), key=operator.itemgetter(1))
+```
 
 <br><br><br>
 
@@ -111,9 +124,9 @@ set("Hello")      # {'l', 'e', 'o', 'H'}
 
 ### sorted() 함수
 
-`sorted(iterable 자료형)`<br>
-- 오름차순 정렬하여 리스트로 반환한다 (리스트의 sort() 함수와 구분하기)<br>
-
+`sorted(iterable 자료형, key, reverse)`<br>
+- key와 reverse를 생략하면 오름차순 정렬하여 리스트로 반환한다
+- 문자열도 정렬 가능
 
 
 <br><br><hr><br>
