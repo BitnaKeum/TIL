@@ -123,3 +123,42 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 - Sigmoid 함수는 학습 시 층이 깊어질수록 미분 값이 0으로 수렴하기 때문에, 역전파 시 weight가 갱신되지 않아 학습이 되지 않을 수 있음
 - 이에 따라 hidden layer에서는 ReLU 함수를, Output layer에서 Sigmoid 함수를 주로 사용한다
 
+<br><br><br>
+
+## LSTM (Long Short Term Memory)
+
+- RNN의 문제점 : 입력 시퀀스가 길거나 RNN을 다층 구조로 쌓으면, 앞쪽의 데이터가 뒤쪽으로 잘 전달되지 않음
+- 이러한 RNN의 문제점을 보완하기 위한 모델
+- hidden state 계산 방식 변경, cell state 추가
+- Input Gate
+  - 현재 데이터를 얼마나 기억할지를 결정
+
+  ![image](https://user-images.githubusercontent.com/37769713/109601999-310f5800-7b63-11eb-8837-bcd1b15ab92a.png)
+
+- Forget Gate
+  - 이전 cell state를 얼마나 기억할지를 결정
+
+  ![image](https://user-images.githubusercontent.com/37769713/109602437-6ddb4f00-7b63-11eb-8bb2-fdad222fdb76.png)
+
+- Output Gate
+  - 현재 hidden state를 결정하는데에 영향을 줌
+
+  ![image](https://user-images.githubusercontent.com/37769713/109602577-b7c43500-7b63-11eb-9581-d942d7ec5251.png)
+
+- 현재 cell state
+
+  ![image](https://user-images.githubusercontent.com/37769713/109602800-26a18e00-7b64-11eb-8eff-ede551bc504f.png)
+
+- 현재 hidden state
+
+  ![image](https://user-images.githubusercontent.com/37769713/109602635-d4f90380-7b63-11eb-8929-23fc9fcbbfc2.png)
+
+<br>
+
+### 양방향(Bidriectional) LSTM 
+
+- RNN은 데이터를 입력 순서로 처리하기 때문에 바로 이전 시점의 정보만 활용할 수 있음
+- 문장이 길어질 수록 성능이 저하
+- 따라서, 기존 LSTM에 역방향으로 처리하는 LSTM 계층을 추가하여 양방향에서 처리할 수 있도록 함
+- `Bidirectional(LSTM())`에서 return_sequences 인자를 반드시 True로 해야 함
+
