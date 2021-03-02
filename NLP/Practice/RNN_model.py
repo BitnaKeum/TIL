@@ -36,6 +36,7 @@ print("train_y.shape = {}".format(train_y.shape))
 
 # RNN 모델 정의
 model = Sequential()
+# SimpleRNN 대신 LSTM을 쓰면 LSTM 모델이 됨
 model.add(SimpleRNN(units=10,
                     return_sequences=False,
                     input_shape=(n_timesteps, n_features))) # units: RNN 계층에 존재하는 노드 수, return_sequences: hidden state를 모든 과정에서 출력할 것인지
