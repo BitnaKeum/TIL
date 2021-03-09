@@ -47,4 +47,49 @@ VOCAB_SIZE = len(p.word_index) + 1  # 전체 단어 수
 # CNN 모델 정의
 input_layer = Input(shape=(MAX_SEQ_LEN,))
 embedding_layer = Embedding(VOCAB_SIZE, EMB_SIZE, input_length=MAX_SEQ_LEN)(input_layer)
-# 이어서 하기~~~~~~~~~~~~~~~
+dropout_emb = Dropout(rate=dropout_prob)(embedding_layer)
+
+conv1 = Conv1D(
+    filters=128,
+    kernel_size=3,
+    padding='valid',
+    activation=tf.nn.relu)(dropout_emb)
+pool1 = GlobalMaxPool1D()(conv1)
+
+conv2 = Conv1D(
+    filters=128,
+    kernel_size=4,
+    padding='valid',
+    activation=tf.nn.relu)(dropout_emb)
+pool2 = GlobalMaxPool1D(conv2)
+
+conv3 = Conv1D(
+    filters=128,
+    kernel_size=5,
+    padding='valid',
+    activation=tf.nn.relu)(dropout_emb)
+pool3 = GlobalMaxPool1D()(conv3)
+
+# 3, 4, 5-gram 이후 합치기
+concat = concatenate([pool1, pool2, pool3])
+
+hidden = Dense(128, activation=tf.nn.relu)(concat)
+dropout_hidden = Dropout(rate=dropout_prob)(hidden)
+logits = Dense(5, name='logits')(dropout_hidden)    # 최종 예측 단계이므로 활성화 함수 미사용, logits가 점수
+predictions = Dense(5, activation=tf.nn.softmax)(logits)    # 감정 클래스별 확률 계산
+
+# 모델 생성
+model = Model(inputs=input_layer, outputs=predictions)  # 앞에서 정의한 계층들을 케라스 모델에 추가하여 생성
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# 모델 학습
+model.fit(train_ds, validation_data=val_ds, epochs=EPOCH, verbose=1)
+
+# 모델 평가
+loss, accuracy = model.evaluate(test_ds, verbose=1)
+print('Accuracy: %f' % (accuracy*100))
+print('loss: %f' % (loss))
+
+# 모델 저장
+model.save('intent_model.h5')
+
