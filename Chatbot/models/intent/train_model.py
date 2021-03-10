@@ -6,12 +6,12 @@ from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, Gl
 
 # 데이터 읽어오기
 train_file = "total_train_data.csv"
-data = pd.read_csv(train_file, delimete=',')
+data = pd.read_csv(train_file, delimiter=',')
 queries = data['query'].tolist()
 intents = data['intent'].tolist()
 
 from utils.Preprocess import Preprocess
-p = Preprocess(word2index_dic='../../train_tools/dict/chatbot_dict.bin', user_dic='../../utils/user_dic.tsv')
+p = Preprocess(word2index_dic='../../train_tools/dict/chatbot_dict.bin', userdic='../../utils/user_dic.tsv')
 
 # 단어 시퀀스 생성
 sequences = []
@@ -61,7 +61,7 @@ conv2 = Conv1D(
     kernel_size=4,
     padding='valid',
     activation=tf.nn.relu)(dropout_emb)
-pool2 = GlobalMaxPool1D(conv2)
+pool2 = GlobalMaxPool1D()(conv2)
 
 conv3 = Conv1D(
     filters=128,
@@ -87,8 +87,8 @@ model.fit(train_ds, validation_data=val_ds, epochs=EPOCH, verbose=1)
 
 # 모델 평가
 loss, accuracy = model.evaluate(test_ds, verbose=1)
-print('Accuracy: %f' % (accuracy*100))
-print('loss: %f' % (loss))
+print('Accuracy: %f' % (accuracy*100))  # 99.763370
+print('loss: %f' % (loss))  # 0.005387
 
 # 모델 저장
 model.save('intent_model.h5')
