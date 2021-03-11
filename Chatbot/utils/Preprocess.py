@@ -27,6 +27,7 @@ class Preprocess:
     def pos(self, sentence):
         return self.komoran.pos(sentence)
 
+    # 키워드 추출
     # 불용어 제거 후 필요한 품사 정보만 가져오기
     def get_keywords(self, pos, without_tag=False):
         f = lambda x: x in self.exclusion_tags
@@ -36,6 +37,7 @@ class Preprocess:
                 word_list.append(p if without_tag is False else p[0])
         return word_list
 
+    # 키워드들을 word_index를 이용해 sequence로 변환
     def get_wordidx_sequence(self, keywords):
         if self.word_index is None:
             return []
