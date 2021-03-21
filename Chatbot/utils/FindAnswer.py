@@ -39,7 +39,7 @@ class FindAnswer:
     # NER 태그를 실제 입력된 단어로 변환
     def tag_to_word(self, ner_predicts, answer):
         for word, tag in ner_predicts:
-            # 변환해야 하는 태그가 있는 경우 추가
+            # 변환해야 하는 태그가 있는 경우
             if tag == 'B_FOOD' or tag == 'B_DT' or tag == 'B_TI':
                 answer = answer.replace(tag, word)
 

@@ -1,3 +1,5 @@
+# 챗봇 엔진 서버 메인 프로그램
+
 import threading
 import json
 
