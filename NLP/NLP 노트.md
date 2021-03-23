@@ -33,7 +33,9 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 2. 등록할 단어 - Tab 키 - 품사(생략 시 NNG) 순으로 파일에 입력한다.
 3. Komoran 객체 생성 시 userdic 인자에 파일명을 넣어준다. ex) `komoran = Komoran(userdic='./user_dic.txt')`
 
-<br><br><br>
+<br><br><br><hr><br>
+
+
 
 ## 임베딩
 - 단어나 문장을 벡터로 표현하는 과정
@@ -93,7 +95,9 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 - 두 단어 간 유사도 계산 : `model.wv.similarity(w1='단어1', w2='단어2')`<br>
 - 가장 유사한 단어 추출 : `model.wv.most_similar('단어', topn) # topn은 추출할 단어 수`<br>
 
-<br><br><br>
+<br><br><br><hr><br>
+
+
 
 ## 텍스트 
 
@@ -115,7 +119,9 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 - 유사도 계산 식 = 두 벡터의 내적(_dot_) / 각 벡터의 크기(_norm_) 곱
 - n-gram 유사도보다 정확
 
-<br><br><br>
+<br><br><br><hr><br>
+
+
 
 ## 딥러닝 모델
 
@@ -123,7 +129,9 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 - Sigmoid 함수는 학습 시 층이 깊어질수록 미분 값이 0으로 수렴하기 때문에, 역전파 시 weight가 갱신되지 않아 학습이 되지 않을 수 있음
 - 이에 따라 hidden layer에서는 ReLU 함수를, Output layer에서 Sigmoid 함수를 주로 사용한다
 
-<br><br><br>
+<br><br><br><hr><br>
+
+
 
 ## LSTM (Long Short Term Memory)
 
@@ -162,3 +170,14 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 - 따라서, 기존 LSTM에 역방향으로 처리하는 LSTM 계층을 추가하여 양방향에서 처리할 수 있도록 함
 - `Bidirectional(LSTM())`에서 return_sequences 인자를 반드시 True로 해야 함
 
+
+<br><br><br><hr><br>
+
+## 단어의 의미를 파악하는 방법
+1. 시소러스(유의어 사전) 활용 기법
+  - 사람이 수작업으로 처리하기 때문에 한계가 많음
+  - 대표적으로 WordNet
+2. 통계 기반 기법
+  - 
+
+3. 추론 기반 기법 - word2vec
