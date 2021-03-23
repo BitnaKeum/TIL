@@ -27,7 +27,7 @@ while True:
 
     # 챗봇 엔진 답변 출력
     data = mySocket.recv(2048).decode()
-    ret_data = json.loads(data)     # json 문자열을 json 객체로 반환
+    ret_data = json.loads(data)     # json 문자열을 딕셔너리 객체로 반환
     print("답변 : ")
     print(ret_data['Answer'])
     print("\n")
