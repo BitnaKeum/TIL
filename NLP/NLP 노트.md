@@ -177,7 +177,28 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 1. 시소러스(유의어 사전) 활용 기법
   - 사람이 수작업으로 처리하기 때문에 한계가 많음
   - 대표적으로 WordNet
-2. 통계 기반 기법
-  - 
 
-3. 추론 기반 기법 - word2vec
+2. 통계 기반 기법
+  - 말뭉치에 대해 동시발생 행렬을 만들 수 있음
+  - PMI(점별 상호정보량)를 이용해 개선
+    - 'the'와 같은 고빈도 단어를 고려하여 관련성 계산
+    -  ![image](https://user-images.githubusercontent.com/37769713/112411265-f82c6280-8d5f-11eb-9d9e-204c1fbef082.png) _(C()는 단어의 등장 횟수, N은 전체 단어 수)_
+    - ![image](https://user-images.githubusercontent.com/37769713/112411471-522d2800-8d60-11eb-968c-fe4f69bc8602.png) 문제를 해결하기 위해 실제로는 ![image](https://user-images.githubusercontent.com/37769713/112411551-725ce700-8d60-11eb-9dc2-f44290ed33d5.png) 를 사용함
+  - PPMI는 희소 벡터이기 때문에 차원 감소를 위해 SVD(특잇값 분해) 이용
+    - ![image](https://user-images.githubusercontent.com/37769713/112411925-ff07a500-8d60-11eb-9268-38fda4892334.png)
+    - 일반 SVD : `numpy.linalg.svd(PPMI 벡터)`
+    - 고속 SVD : 
+      ```
+      from sklearn.utils.extmath import randomized_svd
+      randomized_svd(PPMI 벡터, ...)_
+      ```
+
+3. 추론 기반 기법
+  - 주변 단어(맥락)을 이용해 어떤 단어가 들어갈지 추측하는 것
+  - 대표적으로 Word2Vec
+
+<br>
+
+#### 분포 가설
+'단어의 의미는 주변 단어에 의해 형성된다.'
+- 통계 기반 기법, 추론 기반 기법이 분포 가설을 따름
