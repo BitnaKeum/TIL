@@ -133,10 +133,12 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 
 
 
-## LSTM (Long Short Term Memory)
+## LSTM (Long Short-Term Memory)
 
 - RNN의 문제점 : 입력 시퀀스가 길거나 RNN을 다층 구조로 쌓으면, 앞쪽의 데이터가 뒤쪽으로 잘 전달되지 않음
+  - 역전파 과정에서 똑같은 가중치 행렬을 사용하여 행렬 곱을 반복하여 곱셈 효과가 누적되었기 때문에 기울기가 소실 
 - 이러한 RNN의 문제점을 보완하기 위한 모델
+  - 매번 다른 게이트 값을 이용해 원소별 곱을 계산함으로써 해결
 - hidden state 계산 방식 변경, cell state 추가
 - Input Gate
   - 현재 데이터를 얼마나 기억할지를 결정
