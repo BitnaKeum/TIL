@@ -122,6 +122,38 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 <br><br><br><hr><br>
 
 
+## 단어의 의미를 파악하는 방법
+1. 시소러스(유의어 사전) 활용 기법
+  - 사람이 수작업으로 처리하기 때문에 한계가 많음
+  - 대표적으로 WordNet
+
+2. 통계 기반 기법
+  - 말뭉치에 대해 동시발생 행렬을 만들 수 있음
+  - PMI(점별 상호정보량)를 이용해 개선
+    - 'the'와 같은 고빈도 단어를 고려하여 관련성 계산
+    -  ![image](https://user-images.githubusercontent.com/37769713/112411265-f82c6280-8d5f-11eb-9d9e-204c1fbef082.png) _(C()는 단어의 등장 횟수, N은 전체 단어 수)_
+    - ![image](https://user-images.githubusercontent.com/37769713/112411471-522d2800-8d60-11eb-968c-fe4f69bc8602.png) 문제를 해결하기 위해 실제로는 ![image](https://user-images.githubusercontent.com/37769713/112411551-725ce700-8d60-11eb-9dc2-f44290ed33d5.png) 를 사용함
+  - PPMI는 희소 벡터이기 때문에 차원 감소를 위해 SVD(특잇값 분해) 이용
+    - ![image](https://user-images.githubusercontent.com/37769713/112411925-ff07a500-8d60-11eb-9268-38fda4892334.png)
+    - 일반 SVD : `numpy.linalg.svd(PPMI 벡터)`
+    - 고속 SVD : 
+      ```
+      from sklearn.utils.extmath import randomized_svd
+      randomized_svd(PPMI 벡터, ...)_
+      ```
+
+3. 추론 기반 기법
+  - 주변 단어(맥락)을 이용해 어떤 단어가 들어갈지 추측하는 것
+  - 대표적으로 Word2Vec
+
+<br>
+
+#### 분포 가설
+'단어의 의미는 주변 단어에 의해 형성된다.'
+- 통계 기반 기법, 추론 기반 기법이 분포 가설을 따름
+
+
+<br><br><br><hr><br>
 
 ## 딥러닝 모델
 
@@ -175,32 +207,17 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
 
 <br><br><br><hr><br>
 
-## 단어의 의미를 파악하는 방법
-1. 시소러스(유의어 사전) 활용 기법
-  - 사람이 수작업으로 처리하기 때문에 한계가 많음
-  - 대표적으로 WordNet
+## Seq2seq
 
-2. 통계 기반 기법
-  - 말뭉치에 대해 동시발생 행렬을 만들 수 있음
-  - PMI(점별 상호정보량)를 이용해 개선
-    - 'the'와 같은 고빈도 단어를 고려하여 관련성 계산
-    -  ![image](https://user-images.githubusercontent.com/37769713/112411265-f82c6280-8d5f-11eb-9d9e-204c1fbef082.png) _(C()는 단어의 등장 횟수, N은 전체 단어 수)_
-    - ![image](https://user-images.githubusercontent.com/37769713/112411471-522d2800-8d60-11eb-968c-fe4f69bc8602.png) 문제를 해결하기 위해 실제로는 ![image](https://user-images.githubusercontent.com/37769713/112411551-725ce700-8d60-11eb-9dc2-f44290ed33d5.png) 를 사용함
-  - PPMI는 희소 벡터이기 때문에 차원 감소를 위해 SVD(특잇값 분해) 이용
-    - ![image](https://user-images.githubusercontent.com/37769713/112411925-ff07a500-8d60-11eb-9268-38fda4892334.png)
-    - 일반 SVD : `numpy.linalg.svd(PPMI 벡터)`
-    - 고속 SVD : 
-      ```
-      from sklearn.utils.extmath import randomized_svd
-      randomized_svd(PPMI 벡터, ...)_
-      ```
-
-3. 추론 기반 기법
-  - 주변 단어(맥락)을 이용해 어떤 단어가 들어갈지 추측하는 것
-  - 대표적으로 Word2Vec
-
-<br>
-
-#### 분포 가설
-'단어의 의미는 주변 단어에 의해 형성된다.'
-- 통계 기반 기법, 추론 기반 기법이 분포 가설을 따름
+- 시계열 데이터를 또 다른 시계열 데이터로 변환할 때 사용 (= 입력과 출력이 모두 시계열 데이터) _(ex: 기계 번역, 음성 인식, 챗봇, 이미지 캡셔닝)_
+- Encoder와 Decoder로 이루어짐
+  - Encoder
+    - 입력 데이터를 각각 모두 받음
+    - 최종적으로 hidden state 벡터 출력
+  - Decoder
+    - Encoder의 hidden state 벡터를 LSTM 계층에서 입력으로 받음
+    - 첫 입력 데이터로 구분자인 <eos>를 넣음
+    - 매번 출력 값을 다음 입력 값으로 줌
+    - 마지막 출력 값은 구분자 <eos>
+- hidden state 벡터가 Encoder와 Decoder를 연결하는 역할
+- 개선 방법 : 입력문 Reverse 시키기, Encoder의 hidden state 벡터를 Decoder의 여러 계층에 전달하기 (Peeky Decoder)
