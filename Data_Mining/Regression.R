@@ -54,15 +54,15 @@ pie(val)
 
 
 # 선형회귀 모델 생성
-multi_linear <- lm(Park ~ ., data = dat)
-summary(multi_linear)
+model_linear <- lm(Park ~ ., data = dat)
+summary(model_linear)
 
 # 히스토그램 출력
 hist(dat$Park)
 
 # error 값들 출력
 library(forecast)
-accuracy(multi_linear)
+accuracy(model_linear)
 
 
 # 로지스틱회귀 모델 생성
