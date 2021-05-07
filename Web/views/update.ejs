@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.6.0.min.js"></script>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        
+        <form action="/board/update" method="post" enctype="multipart/form-data" onsubmit="return onWriteSubmit()">
+            <table border="1">
+                <input type="hidden" name="idx" value="<%=row.idx%>"/>
+                <tr>
+                    <td>작성자</td>
+                    <td><input type="text" name="creator_id" id="creator_id" value="<%=row.creator_id%>" required/></td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="title" id="title" value="<%=row.title%>" required/></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><textarea type="content" name="content" cols="30" rows="10" required><%=row.content%></textarea></td>
+                </tr>
+                <tr>
+                    <td>패스워드</td>
+                    <td><input type="password" name="passwd" id="passwd" required/></td>
+                </tr>
+                <tr>
+                    <td>이미지 첨부</td>
+                    <td><input type="file" name="image" id="image" value="<%=row.image%>"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">글 쓰기</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+        <script>
+            function onWriteSubmit() {
+                if ( $("#creator_id").val().trim() == "") {
+                    var message = "아이디를 입력해주세요.";
+                    $("#creator_id").val("");
+                    $("#creator_id").focus();
+                    alert(message);
+                    return false;
+                }
+                if ( $("#title").val().trim() == "") {
+                    var message = "제목을 입력해주세요.";
+                    $("#title").val("");
+                    $("#title").focus();
+                    alert(message);
+                    return false;
+                }
+                if ( $("#content").val().trim() == "") {
+                    var message = "본문 내용을 입력해주세요.";
+                    $("#content").val("");
+                    $("#content").focus();
+                    alert(message);
+                    return false;
+                }
+                if ( $("#passwd").val().trim() == "") {
+                    var message = "패스워드를 입력해주세요.";
+                    $("#passwd").val("");
+                    $("#passwd").focus();
+                    alert(message);
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>

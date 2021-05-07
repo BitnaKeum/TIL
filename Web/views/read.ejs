@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.6.0.min.js"></script>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        
+        <form action="/board/update" method="get">
+            <table border="1">
+                <input type="hidden" name="idx" value="<%=rows.idx%>"/>
+                <tr>
+                    <td>작성자</td>
+                    <td><%=rows.creator_id%></td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td><%=rows.title%></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><%=rows.content%></td>
+                </tr>
+                <tr>
+                    <td>조회수</td>
+                    <td><%=rows.hit%></td>
+                </tr>
+                <tr>
+                    <td>이미지</td>
+                    <td><img src="/uploads/<%=rows.image%>"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">글 수정</button>
+                        <a href="/board">리스트로 돌아가기</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+        <a href="/board/delete/<%=rows.idx%>"><button type="submit">글 삭제</button></a>
+    </body>
+</html>
+
+
