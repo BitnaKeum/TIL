@@ -216,8 +216,21 @@ print(kkma.pos(sentence)) # [('치킨', 'NNG'), ('은', 'JX'), ('맛있', 'VA'),
     - 최종적으로 hidden state 벡터 출력
   - Decoder
     - Encoder의 hidden state 벡터를 LSTM 계층에서 입력으로 받음
-    - 첫 입력 데이터로 구분자인 <eos>를 넣음
+    - 첫 입력 데이터로 구분자 eos를 넣음
     - 매번 출력 값을 다음 입력 값으로 줌
-    - 마지막 출력 값은 구분자 <eos>
+    - 마지막 출력 값은 구분자 eos
 - hidden state 벡터가 Encoder와 Decoder를 연결하는 역할
 - 개선 방법 : 입력문 Reverse 시키기, Encoder의 hidden state 벡터를 Decoder의 여러 계층에 전달하기 (Peeky Decoder)
+
+<br><br><br><hr><br>
+
+## Attention
+
+- 필요한 정보에만 주목하여 시계열 변환을 수행
+- Seq2seq의 문제점 : Encoder의 출력이 고정 길이의 벡터 라는 점 (입력 문장 길이에 상관 없이 항상 같은 길이의 벡터 출력)
+- Encoder 개선
+  - 마지막 LSTM 계층의 hidden 벡터를 Decoder에 전달 -> 모든 시각별 LSTM 계층의 hidden 벡터를 Decoder에 전달 (입력 길이와 같은 길이의 벡터 출력)
+- Decoder 개선
+  - 출력하려는 값과 관련이 있는 입력 값을 선택하도록 함
+  - 각 단어들에 대한 가중치를 구하고, 각 단어 벡터(hs)와 가중치(a)를 가중합하여 맥락 벡터 c를 얻음 
+  - 가중치를 구하는 방법 중 하나는 hs와 h를 내적하고, Softmax를 취하는 것 (h: Decoder의 한 LSTM 계층에서의 hidden state)
