@@ -10,7 +10,7 @@ def dfs():
         if node not in visit:
             visit[node] = True
             stack.extend(reversed(sorted(list(graph[node] - set(visit.keys())))))
-    return visit.keys()
+    return ' '.join(str(key) for key in visit.keys())
 
 def bfs():
     visit = {}
@@ -20,7 +20,7 @@ def bfs():
         if node not in visit:
             visit[node] = True
             queue.extend(sorted(list(graph[node] - set(visit.keys()))))
-    return visit.keys()
+    return ' '.join(str(key) for key in visit.keys())
 
 
 N, M, V = map(int, input().split())
@@ -31,8 +31,5 @@ for _ in range(M):
     graph[num1].add(num2)
     graph[num2].add(num1)
 
-for result in dfs():
-    print(result, end=' ')
-print()
-for result in bfs():
-    print(result, end=' ')
+print(dfs())
+print(bfs())
