@@ -1,4 +1,4 @@
-# 프로그래머스 연습문제 리코쳇 로봇 문제
+# 프로그래머스 연습문제 리코쳇 로봇 문제 (Lv2)
 # https://school.programmers.co.kr/learn/courses/30/lessons/169199
 
 '''
