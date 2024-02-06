@@ -31,3 +31,19 @@ for i in range(2, n):
     d[i] = max(d[i-1], d[i-2] + arr[i])
 
 print(d[n-1])
+
+
+# --- 답안3. 내 코드 (점화식으로 접근하지 않아서 간결하지 않음)
+n = int(input())
+arr = list(map(int, input().split()))
+
+d = [0] * n
+d[0], d[1] = arr[0], arr[1]
+for i in range(n-2):
+    # 두칸뛰기
+    d[i+2] = max(d[i] + arr[i+2], d[i+2])
+    # 세칸뛰기
+    if i != n-3:
+        d[i+3] = max(d[i] + arr[i+3], d[i+3])
+    
+print(max(d[n-2], d[n-1]))
